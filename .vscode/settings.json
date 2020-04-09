@@ -1,0 +1,6 @@
+{
+    "fileheader.Author": "zhiyuan.wu",
+    "fileheader.LastModifiedBy": "zhiyuan.wu",
+    "prettier.arrowParens": "always",
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+}
