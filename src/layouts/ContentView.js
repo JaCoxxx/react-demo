@@ -1,25 +1,17 @@
 import React from 'react';
 import { Tabs } from 'antd'
+import { StickyContainer, Sticky } from 'react-sticky'
+import MouseRightMenu from 'Components/Widget/mouse-right-menu'
 
 const { TabPane } = Tabs
 
 class ContentView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      visible: true,
+    }
   }
-
-  // tab页切换
-  onChange = activeKey => {
-    const { onChangeTabs } = this.props
-    onChangeTabs && onChangeTabs(activeKey);
-  };
-
-  // tab页状态更改
-  onEdit = (targetKey, action) => {
-    const { onEditTabs } = this.props
-    onEditTabs && onEditTabs(targetKey, action);
-  };
 
   // 关闭tab页
   remove = targetKey => {
@@ -27,28 +19,59 @@ class ContentView extends React.Component {
     removeTabs && removeTabs(targetKey);
   };
 
-  render() {
-    const { activeKey, panes, children } = this.props
+  // 渲染tab栏
+  renderTabBar = (props, DefaultTabBar) => {
     return (
-      <div>
+      <Sticky bottomOffset={80}>
+        {({ style }) => (
+          <MouseRightMenu
+            rightMenuList={[
+              {label: '关闭所有页面', key: 'closeAll'},
+              {label: '刷新当前页面', key: 'refresh', onClick: (e, key) => this.onRefreshPage(e, key, props)},
+            ]}
+          >
+            <DefaultTabBar {...props} style={{ ...style, zIndex: 1, background: '#fff' }} />
+          </MouseRightMenu>
+        )}
+      </Sticky>
+    )
+  }
+
+  // 刷新当前页面
+  onRefreshPage = (e, key, props) => {
+    console.log(e, key, props)
+    this.setState({
+      visible: false,
+    }, () => {
+      this.setState({
+        visible: true,
+      })
+    })
+  }
+
+  render() {
+    const { activeKey, panes, children, onChangeTabs, onEditTabs } = this.props
+    const { visible } = this.state
+    return (
+      <StickyContainer>
         <Tabs
           hideAdd
-          onChange={this.onChange}
+          onChange={onChangeTabs}
           activeKey={activeKey}
           type="editable-card"
-          onEdit={this.onEdit}
-          animated
+          onEdit={onEditTabs}
           size="small"
+          renderTabBar={this.renderTabBar}
         >
           {panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
               <div style={{ padding: '10px', minHeight: '90vh', position: 'relative' }}>
-                {children}
+                {visible && children}
               </div>
             </TabPane>
           ))}
         </Tabs>
-      </div>
+      </StickyContainer>
     );
   }
 }

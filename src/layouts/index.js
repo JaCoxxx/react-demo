@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout } from 'antd'
 import router from 'umi/router'
-import { connect } from 'dva'
+import { connect, routerRedux } from 'dva'
 
 import MenuList from '../../config/menu.config'
 
@@ -104,8 +104,14 @@ class BasicLayout extends React.Component {
 
   // 切换tab页
   onChangeTabs = activeKey => {
+    const { dispatch } = this.props
     const menuData = this.getMenuData(activeKey)
-    router.replace(menuData.path);
+    dispatch(
+      routerRedux.replace({
+        pathname: menuData.path,
+      })
+    )
+    // router.replace(menuData.path);
     this.onOpenChange([activeKey]);
     this.setState({ activeKey, openKeys: menuData.keyPath.slice(0, menuData.keyPath.length - 1) });
   };
@@ -118,6 +124,7 @@ class BasicLayout extends React.Component {
   // 关闭tab页
   removeTabs = targetKey => {
     const { panes } = this.state
+    const { dispatch } = this.props
     let { activeKey } = this.state
     let lastIndex = -1
     panes.forEach((pane, i) => {
@@ -135,7 +142,12 @@ class BasicLayout extends React.Component {
     }
     this.onOpenChange([activeKey]);
     this.setState({ panes: myPanes, activeKey }, () => {
-      router.replace(myPanes.find(item => item.key === activeKey).path);
+      dispatch(
+        routerRedux.replace({
+          pathname: myPanes.find(item => item.key === activeKey).path,
+        })
+      )
+      // router.replace(myPanes.find(item => item.key === activeKey).path);
     });
   };
 
