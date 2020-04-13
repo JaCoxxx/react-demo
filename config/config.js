@@ -9,6 +9,7 @@ const resolvePath = dir => path.resolve(__dirname, dir)
 export default {
   treeShaking: true,
   routes: Routes,
+  publicPath: '/react-demo/dist/',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
