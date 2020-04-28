@@ -1,6 +1,5 @@
 import React from 'react'
 import { Layout } from 'antd'
-import router from 'umi/router'
 import { connect, routerRedux } from 'dva'
 
 import MenuList from '../../config/menu.config'
@@ -190,6 +189,25 @@ class BasicLayout extends React.Component {
     })
   }
 
+  // 关闭所有页面
+  onCloseAllPage = () => {
+    const { activeKey, panes } = this.state
+    console.log(activeKey, panes)
+    this.setState({
+      panes: [panes[0]],
+    }, () => {
+      console.log(panes)
+      this.onChangeTabs(panes[0].key)
+    })
+  }
+
+  // 关闭当前页面
+  onCloseCurrentPage = () => {
+    const { activeKey } = this.state
+    console.log(activeKey)
+    this.removeTabs(activeKey)
+  }
+
   render() {
     const { children } = this.props;
     const { collapsed, activeKey, panes, menuList, openKeys } = this.state;
@@ -228,6 +246,8 @@ class BasicLayout extends React.Component {
               onChangeTabs={this.onChangeTabs}
               onEditTabs={this.onEditTabs}
               removeTabs={this.removeTabs}
+              onCloseAll={this.onCloseAllPage}
+              onCloseCurrent={this.onCloseCurrentPage}
               panes={panes}
               activeKey={activeKey}
             >

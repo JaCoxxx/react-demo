@@ -53,10 +53,10 @@ export default class SourceCodeCard extends React.Component {
           changeFlag ? (
             <div>
               <h6>(仅展示部分代码)</h6>
-              {/* <code style={{ whiteSpace: 'pre' }}>{codeString}</code> */}
-              <Highlight language="javascript">
+              <code style={{ whiteSpace: 'pre' }}>{codeString}</code>
+              {/* <Highlight language="javascript">
                 {codeString}
-              </Highlight>
+              </Highlight> */}
             </div>
           ) : children
         }

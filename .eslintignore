@@ -1,0 +1,12 @@
+build/
+config/
+static/
+
+node_modules/
+test/
+
+dist/
+
+
+src/assets/
+

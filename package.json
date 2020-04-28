@@ -20,6 +20,8 @@
     "react-app-rewired": "^2.1.5",
     "react-dom": "^16.8.6",
     "react-highlight": "^0.12.0",
+    "react-router": "^6.0.0-alpha.3",
+    "react-router-dom": "^6.0.0-alpha.3",
     "react-sticky": "^6.0.3",
     "sass-loader": "^8.0.0"
   },
