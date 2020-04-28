@@ -53,5 +53,6 @@
   },
   "engines": {
     "node": ">=8.0.0"
-  }
+  },
+  "homepage": "/react-demo/dist/"
 }
