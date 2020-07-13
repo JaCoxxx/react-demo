@@ -8,6 +8,7 @@ export default [
       { path: '/hooks/uffect-hooks', component: '../pages/Hooks/uffectHooks/index' },
       { path: '/hooks/context-hooks', component: '../pages/Hooks/contextHooks/index' },
       { path: '/trees/trees-demo', component: '../pages/Trees/index' },
+      { path: '/drawer/drawer-demo', component: '../pages/Drawer/drawerUpdate/index' },
     ],
   },
   {

@@ -5,6 +5,7 @@ module.exports = {
     "react-hooks",
   ],
   rules: {
+    'react/no-deprecated': [0],
     'import/no-unresolved': [0],
     'generator-star-spacing': [0],
     'consistent-return': [0],
@@ -35,6 +36,8 @@ module.exports = {
         prop: 'ignore',
       },
     ],
+    'no-unused-expressions': [0],
+    'no-return-assign': [0],
     'no-else-return': [0],
     'no-restricted-syntax': [0],
     'no-use-before-define': [0],

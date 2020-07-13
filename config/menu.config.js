@@ -51,4 +51,18 @@ export default [
       },
     ],
   },
+  {
+    key: 'drawer',
+    title: '抽屉',
+    icon: 'bars',
+    child: [
+      {
+        key: 'drawerDemo',
+        title: 'drawerDemo',
+        icon: 'bars',
+        path: '/drawer/drawer-demo',
+        component: require('../src/pages/Drawer/drawerUpdate/index').default,
+      },
+    ],
+  },
 ];
